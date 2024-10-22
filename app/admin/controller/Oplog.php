@@ -40,7 +40,7 @@ class Oplog extends Controller
      * @throws \think\db\exception\ModelNotFoundException
      */
     public function index()
-    {/*
+    {
         SystemOplog::mQuery()->layTable(function () {
             $this->title = '系统日志管理';
             $columns = SystemOplog::mk()->column('action,username', 'id');
@@ -48,7 +48,7 @@ class Oplog extends Controller
             $this->actions = array_unique(array_column($columns, 'action'));
         }, static function (QueryHelper $query) {
             $query->dateBetween('create_at')->equal('username,action')->like('content,geoip,node');
-        });*/
+        });
     }
 
     /**
