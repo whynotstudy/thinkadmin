@@ -51,9 +51,9 @@ return [
         'redis' => [
             // 驱动方式
             'type'     => 'redis',
-            'host'     => env('cache.redis_hostname', '81.70.135.124'),
+            'host'     => env('cache.redis_hostname', '127.0.0.1'),
             'port'     => env('cache.redis_hostport', 6379),
-            'password' => env('cache.redis_password', 'ccc258369'),
+            'password' => env('cache.redis_password', ''),
             'select'   => env('cache.redis_select', 0),
         ]
     ],

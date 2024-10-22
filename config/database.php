@@ -33,9 +33,9 @@ return [
             // 数据库名
             'database'        => env('db.mysql_database', 'thinkadmin'),
             // 用户名
-            'username'        => env('db.mysql_username', 'thinkadmin'),
+            'username'        => env('db.mysql_username', ''),
             // 密码
-            'password'        => env('db.mysql_password', 'ccc147258'),
+            'password'        => env('db.mysql_password', ''),
             // 端口
             'hostport'        => env('db.mysql_hostport', '3306'),
             // 数据库连接参数
