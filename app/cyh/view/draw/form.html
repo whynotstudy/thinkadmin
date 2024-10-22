@@ -1,0 +1,71 @@
+<form action="{:sysuri()}" method="post" data-auto="true" class="layui-form layui-card" data-table-id="CyhTable">
+
+    <div class="layui-card-body padding-left-40">
+        <label class="layui-form-item relative block">
+            <span class="help-label"><b>会员ID</b>Mid</span>
+            {if isset($vo.mid)}
+            <input readonly maxlength="100" class="layui-input think-bg-gray" name="mid" value='{$vo.mid|default=""}' required placeholder="请输入会员ID">
+            {else}
+            <input maxlength="100" class="layui-input" name="mid" value='{$vo.mid|default=""}' required vali-name="会员ID" placeholder="请输入会员ID">
+            {/if}
+            <span class="help-block">请输入新的会员ID，数据创建后不能再次修改，同一个会员ID不能出现重复 ~</span>
+        </label>
+
+        <div class="layui-form-item label-required-prev">
+            <div class="help-label"><b>奖励名称</b>GoodsName Type</div>
+            {if isset($vo.goods_name)}
+            <label><input readonly value="{$vo.goods_name|default=''}" class="layui-input think-bg-gray"></label>
+            {else}
+            <select class="layui-select" lay-filter="DataType">
+                {foreach $types as $goods_name}{if (isset($vo.goods_name) and $goods_name eq $vo.goods_name) or ($goods_name eq input('get.goods_name'))}
+                <option selected value="{$goods_name}">{$goods_name}</option>
+                {else}
+                <option value="{$goods_name}">{$goods_name}</option>
+                {/if}{/foreach}
+            </select>
+            <script>
+                (function (callable) {
+                    layui.form.on('select(DataType)', callable);
+                    callable({value: "{$vo.goods_name|default=''}" || $('[lay-filter=DataType]').val()});
+                })(function (data) {
+                    if (data.value === '--- 新的奖励 ---') {
+                        $('#DataTypeInput').removeClass('layui-hide').find('input').val('').focus();
+                    } else {
+                        $('#DataTypeInput').addClass('layui-hide').find('input').val(data.value);
+                    }
+                });
+            </script>
+            {/if}
+            <p class="help-block">请选择奖励，数据创建后不能再次修改哦 ~</p>
+            <div id="DataTypeInput" class="layui-hide relative">
+                <input class="layui-input" maxlength="20" name="goods_name" required vali-name="奖励" placeholder="请输入新奖励" value="{$vo.goods_name|default=''}">
+                <p class="help-block">请输入新的奖励，数据创建后不能再次修改哦 ~</p>
+            </div>
+        </div>
+
+        <label class="layui-form-item relative block">
+            <span class="help-label"><b>物品码</b>Goods Code</span>
+            {if isset($vo.goods_code)}
+            <input readonly maxlength="100" class="layui-input think-bg-gray" name="goods_code" value='{$vo.goods_code|default=""}' required placeholder="请输入物品码">
+            {else}
+            <input maxlength="100" class="layui-input" name="goods_code" value='{$vo.goods_code|default=""}' required vali-name="物品码" placeholder="请输入物品码">
+            {/if}
+            <span class="help-block">请输入新的物品码，数据创建后不能再次修改~</span>
+        </label>
+
+        <label class="layui-form-item relative block">
+            <span class="help-label"><b>IP</b>IP</span>
+            <input maxlength="500" class="layui-input" name="ip" value='{$vo.ip|default=""}' required vali-name="IP" placeholder="请输入IP">
+            <span class="help-block">请输入当前ip~</span>
+        </label>
+    </div>
+
+    <div class="hr-line-dashed"></div>
+    {notempty name='vo.id'}<input type='hidden' value='{$vo.id}' name='id'>{/notempty}
+
+    <div class="layui-form-item text-center">
+        <button class="layui-btn" type='submit'>保存数据</button>
+        <button class="layui-btn layui-btn-danger" type='button' data-confirm="确定要取消编辑吗？" data-close>取消编辑</button>
+    </div>
+
+</form>

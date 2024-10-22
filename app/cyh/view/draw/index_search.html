@@ -1,0 +1,49 @@
+<form class="layui-form layui-form-pane form-search" action="{:sysuri()}" onsubmit="return false" method="get" autocomplete="off">
+
+    <div class="layui-form-item layui-inline">
+        <label class="layui-form-label">{:lang('会员ID')}</label>
+        <div class="layui-input-inline">
+            <input name="mid" value="{$get.mid|default=''}" placeholder="{:lang('请输入会员ID')}" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-inline">
+        <label class="layui-form-label">{:lang('奖励名称')}</label>
+        <div class="layui-input-inline">
+            <input name="goods_name" value="{$get.goods_name|default=''}" placeholder="{:lang('请输入奖励名称')}" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-inline">
+        <label class="layui-form-label">{:lang('IP')}</label>
+        <div class="layui-input-inline">
+            <input name="ip" value="{$get.ip|default=''}" placeholder="{:lang('请输入IP')}" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-inline">
+        <label class="layui-form-label">{:lang('状态')}</label>
+        <div class="layui-input-inline">
+            <select class="layui-select" name="status">
+                <option value=''>-- {:lang('全部')} --</option>
+                {foreach [lang('已禁用记录'),lang('已激活记录')] as $k=>$v}
+                {if isset($get.status) and $get.status eq $k.""}
+                <option selected value="{$k}">{$v}</option>
+                {else}
+                <option value="{$k}">{$v}</option>
+                {/if}{/foreach}
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-inline">
+        <label class="layui-form-label">{:lang('创建时间')}</label>
+        <div class="layui-input-inline">
+            <input data-date-range name="add_time" value="{$get.add_time|default=''}" placeholder="{:lang('请选择创建时间')}" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-inline">
+        <button class="layui-btn layui-btn-primary"><i class="layui-icon">&#xe615;</i> {:lang('搜 索')}</button>
+    </div>
+</form>
