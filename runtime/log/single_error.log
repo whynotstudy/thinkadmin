@@ -1,0 +1,2 @@
+[2024-10-15 15:18:41][error] [10501]SQLSTATE[42S02]: Base table or view not found: 1146 Table 'thinkadmin.system_menu' doesn't exist[D:\phpstudy_pro\WWW\ftpuser\thinkadmin\vendor\topthink\think-orm\src\db\PDOConnection.php:797]
+[2024-10-15 15:19:06][error] [10501]SQLSTATE[42S02]: Base table or view not found: 1146 Table 'thinkadmin.system_menu' doesn't exist[D:\phpstudy_pro\WWW\ftpuser\thinkadmin\vendor\topthink\think-orm\src\db\PDOConnection.php:797]

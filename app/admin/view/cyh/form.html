@@ -1,0 +1,68 @@
+<form action="{:sysuri()}" method="post" data-auto="true" class="layui-form layui-card" data-table-id="CyhTable">
+
+    <div class="layui-card-body padding-left-40">
+
+        <div class="layui-form-item label-required-prev">
+            <div class="help-label"><b>渠道</b>How Type</div>
+            {if isset($vo.how)}
+            <label><input readonly value="{$vo.how|default=''}" class="layui-input think-bg-gray"></label>
+            {else}
+            <select class="layui-select" lay-filter="DataType">
+                {foreach $types as $type}{if (isset($vo.how) and $type eq $vo.how) or ($type eq input('get.how'))}
+                <option selected value="{$type}">{$type}</option>
+                {else}
+                <option value="{$type}">{$type}</option>
+                {/if}{/foreach}
+            </select>
+            <script>
+                (function (callable) {
+                    layui.form.on('select(DataType)', callable);
+                    callable({value: "{$vo.how|default=''}" || $('[lay-filter=DataType]').val()});
+                })(function (data) {
+                    if (data.value === '--- 新渠道 ---') {
+                        $('#DataTypeInput').removeClass('layui-hide').find('input').val('').focus();
+                    } else {
+                        $('#DataTypeInput').addClass('layui-hide').find('input').val(data.value);
+                    }
+                });
+            </script>
+            {/if}
+            <p class="help-block">请选择渠道，数据创建后不能再次修改哦 ~</p>
+            <div id="DataTypeInput" class="layui-hide relative">
+                <input class="layui-input" maxlength="20" name="how" required vali-name="渠道" placeholder="请输入渠道" value="{$vo.how|default=''}">
+                <p class="help-block">请输入新的渠道，数据创建后不能再次修改哦 ~</p>
+            </div>
+        </div>
+
+        <label class="layui-form-item relative block">
+            <span class="help-label"><b>会员ID</b>Mid</span>
+            {if isset($vo.mid)}
+            <input readonly maxlength="100" class="layui-input think-bg-gray" name="mid" value='{$vo.mid|default=""}' required placeholder="请输入会员ID">
+            {else}
+            <input maxlength="100" class="layui-input" name="mid" value='{$vo.mid|default=""}' required vali-name="会员ID" placeholder="请输入会员ID">
+            {/if}
+            <span class="help-block">请输入新的会员ID，数据创建后不能再次修改，同一个会员ID不能出现重复 ~</span>
+        </label>
+
+        <label class="layui-form-item relative block">
+            <span class="help-label"><b>姓名</b>Name</span>
+            <input maxlength="500" class="layui-input" name="name" value='{$vo.name|default=""}' required vali-name="姓名" placeholder="请输入姓名">
+            <span class="help-block">请输入当前姓名，请尽量保持名称的唯一性，姓名尽量不要出现重复 ~</span>
+        </label>
+
+        <label class="layui-form-item relative block">
+            <span class="help-label"><b>地址</b>Address</span>
+            <textarea name="address" class="layui-textarea" placeholder="请输入地址">{$vo.address|default=''}</textarea>
+        </label>
+
+    </div>
+
+    <div class="hr-line-dashed"></div>
+    {notempty name='vo.id'}<input type='hidden' value='{$vo.id}' name='id'>{/notempty}
+
+    <div class="layui-form-item text-center">
+        <button class="layui-btn" type='submit'>保存数据</button>
+        <button class="layui-btn layui-btn-danger" type='button' data-confirm="确定要取消编辑吗？" data-close>取消编辑</button>
+    </div>
+
+</form>
